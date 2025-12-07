@@ -1,36 +1,65 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+using Lab2.Libraries;
 
-namespace DataTypesTask
+namespace Lab2.App
 {
     class Program
     {
-        // Task 1: BMI Calculator Function (консольная утилита)
-        static double CalculateBMI(double weightKg, double heightM)
+        static void Main()
         {
-            if (heightM <= 0 || weightKg <= 0)
+            // Задание 1
+            Person person = new Person();
+
+            Console.Write("Введите имя: ");
+            string name = Console.ReadLine();
+
+            double weight;
+            double height;
+
+            while (true)
             {
-                throw new ArgumentException("Вес и рост должны быть положительными числами");
+
+
+                Console.Write("Введите вес (кг): ");
+                string input = Console.ReadLine();
+
+
+                if (double.TryParse(input, out weight))
+                {
+                    Console.Write("Введите рост (м): ");
+                    input = Console.ReadLine();
+                    if (double.TryParse(input, out height))
+                    {
+                        person.Name = name;
+                        person.Weight = weight;
+                        person.Height = height;
+
+                        Console.WriteLine(person);
+
+                        double bmi = BMICalculator.Calculate(person);
+                        Console.WriteLine($"ИМТ (BMI): {bmi:F2}");
+                        Console.WriteLine($"Категория: {BMICalculator.GetCategory(bmi)}\n");
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Вы ввели не число! Попробуйте снова.");
+                }
             }
 
-            return weightKg / (heightM * heightM);
-        }
+            // Задание 2
 
-        static void DisplayBMICategory(double bmi)
-        {
-            Console.WriteLine($"\nВаш индекс массы тела (ИМТ): {bmi:F2}");
+            int[] arr = ArrayAnalyzer.RandomNumberArrayGenerator();
+            ArrayAnalyzer.PrinterInformation(arr);
+            Console.WriteLine();
 
-            if (bmi < 18.5)
-            {
-                Console.WriteLine("Категория: Недостаточный вес");
-            }
-            else if (bmi < 25)
-                Console.WriteLine("Категория: Нормальный вес");
-            else if (bmi < 30)
-                Console.WriteLine("Категория: Избыточный вес");
-            else
-                Console.WriteLine("Категория: Ожирение");
+            // Задание 3
+            Console.WriteLine("Введите текст");
+            string text = Console.ReadLine();
+            double avgLen = TextAnalyzer.AverageWordLengthCounter(text);
+            Console.WriteLine($"\nТекст: {text}");
+            Console.WriteLine($"Средняя длина слова: {avgLen:F2}\n");
         }
     }
 }
