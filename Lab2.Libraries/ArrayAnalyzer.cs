@@ -1,4 +1,6 @@
-﻿namespace Lab2.Libraries
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Lab2.Libraries
 
 
 {
@@ -10,10 +12,12 @@
         /// <summary>
         /// Генерирует массив случайных чисел
         /// </summary>
-        public static int[] GenerateRandom(int size, int minValue = 1, int maxValue = 100)
+        /// <returns>массив случайных чисел</returns>
+        public static int[] RandomNumberArrayGenerator()
         {
-            if (size <= 0)
-                throw new ArgumentException("Размер массива должен быть больше нуля");
+            int size = 10; //размер массива
+            int minValue = 0; //минимальное возможное число в массиве
+            int maxValue = 100; //максимальное возможное число в массиве
 
             Random random = new Random();
             int[] array = new int[size];
@@ -27,14 +31,18 @@
         }
 
         /// <summary>
-        /// Поиск минимума
+        /// Находит минимальное число в массиве
         /// </summary>
-        public static int FindMinimum(int[] array)
+        /// <param name="array">массив чисел</param>
+        /// <returns>минимальное число в массиве</returns>
+        public static int SeekerMinimum(int[] array)
         {
             if (array.Length == 0)
-                return 0;
+            {
+                throw new ArgumentException("Массив не должен быть пустым", nameof(array));
+            }  
 
-            int min = 0;
+            int min = array[0];
             for (int i = 1; i < array.Length; i++)
             {
                 if (array[i] < min)
@@ -44,14 +52,18 @@
         }
 
         /// <summary>
-        /// Поиск максимума
+        /// Находит маскимальное число в массиве
         /// </summary>
-        public static int FindMaximum(int[] array)
+        /// <param name="array">массив чисел</param>
+        /// <returns>максимальное число в массиве</returns>
+        public static int SeekerMaximum(int[] array)
         {
             if (array.Length == 0)
-                return 0;
+            {
+                throw new ArgumentException("Массив не должен быть пустым", nameof(array));
+            }
 
-            int max = 0;
+            int max = array[0];
             for (int i = 1; i < array.Length; i++)
             {
                 if (array[i] > max)
@@ -61,50 +73,63 @@
         }
 
         /// <summary>
-        /// Расчет суммы элементов
+        /// Сортировщик по возрастанию (сортировка пузырьком)
         /// </summary>
-        public static long CalculateSum(int[] array)
+        /// <param name="array">массив чисел</param>
+        /// <exception cref="ArgumentException">массив имеет меньше двух элементов</exception>
+        public static void ArraySorter(int[] array)
         {
-            long sum = 0;
-            for (int i = 0; i < array.Length; i++)
+            if (array.Length < 2)
             {
-                sum += array[i];
+                throw new ArgumentException("Массив должен иметь не меньше двух элементов", nameof(array));
             }
-            return sum;
-        }
 
-        /// <summary>
-        /// Расчет среднего значения
-        /// </summary>
-        public static double CalculateAverage(int[] array)
-        {
-            if (array.Length == 0)
-                return 0;
-
-            long sum = CalculateSum(array);
-            return (double)sum / array.Length;
-        }
-
-        /// <summary>
-        /// Вывод статистики по массиву
-        /// </summary>
-        public static void PrintStatistics(int[] array, string title = "Массив")
-        {
-            Console.WriteLine($"\n{title}:");
-
-            Console.Write("Элементы: ");
             for (int i = 0; i < array.Length; i++)
             {
-                if (i > 0) Console.Write(", ");
+                for (int j = 0; j < array.Length - 1 - i; j++)
+                {
+                    if (array[j] > array[j + 1])
+                    {
+                        int t = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = t;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Выводит массив в консоль
+        /// </summary>
+        /// <param name="array">массив чисел</param>
+        public static void PrinterArray(int[] array)
+        {
+            Console.Write("Массив чисел: ");
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i > 0)
+                {
+                    Console.Write(", ");
+                }
+
                 Console.Write(array[i]);
             }
             Console.WriteLine();
+        }
 
+        /// <summary>
+        /// Выводит информацию о массиве
+        /// </summary>
+        /// <param name="array">массив чисел</param>
+        public static void PrinterInformation(int[] array)
+        {
+            PrinterArray(array);
+            Console.WriteLine("Отсортированный массив");
+            ArraySorter(array);
+            PrinterArray(array);
             Console.WriteLine($"Количество элементов: {array.Length}");
-            Console.WriteLine($"Минимальное значение: {FindMinimum(array)}");
-            Console.WriteLine($"Максимальное значение: {FindMaximum(array)}");
-            Console.WriteLine($"Сумма всех элементов: {CalculateSum(array)}");
-            Console.WriteLine($"Среднее значение: {CalculateAverage(array):F2}");
+            Console.WriteLine($"Минимальный элемент массива: {SeekerMinimum(array)}");
+            Console.WriteLine($"Максимальный элемент массива: {SeekerMaximum(array)}");
         }
     }
 }

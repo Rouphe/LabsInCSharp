@@ -12,7 +12,7 @@ namespace Lab1.Libraries
         /// </summary>
         /// <param name="n">величина последовательности</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException">предупреждение при ошибке аргумента</exception>
+        /// <exception cref="ArgumentException">ошибка аргумента "n"</exception>
         public static string SequenceCreator(int n)
         {
 

@@ -5,46 +5,61 @@ namespace Lab2.App
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-         // Демонстрация всех функций
-         DemonstrationMode();
-        }
-
-        static void DemonstrationMode()
+        static void Main()
         {
             // Задание 1
-            Person person = new Person
+            Person person = new Person();
+
+            Console.Write("Введите имя: ");
+            string name = Console.ReadLine();
+
+            double weight;
+            double height;
+
+            while (true)
             {
-                Name = "Иван Иванов",
-                Weight = 80,
-                Height = 1.85
-            };
-            Console.WriteLine(person);
+                
 
-            double bmi = BMICalculator.Calculate(person);
-            Console.WriteLine($"ИМТ (BMI): {bmi:F2}");
-            Console.WriteLine($"Категория: {BMICalculator.GetCategory(bmi)}\n");
+                Console.Write("Введите вес (кг): ");
+                string input = Console.ReadLine();
 
+             
+                if (double.TryParse(input, out weight))
+                {
+                    Console.Write("Введите рост (м): ");
+                    input = Console.ReadLine();
+                    if (double.TryParse(input, out height))
+                    {
+                        person.Name = name;
+                        person.Weight = weight;
+                        person.Height = height;
+
+                        Console.WriteLine(person);
+
+                        double bmi = BMICalculator.Calculate(person);
+                        Console.WriteLine($"ИМТ (BMI): {bmi:F2}");
+                        Console.WriteLine($"Категория: {BMICalculator.GetCategory(bmi)}\n");
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Вы ввели не число! Попробуйте снова.");
+                }
+            }
+            
             // Задание 2
 
-            int[] arr1 = ArrayAnalyzer.GenerateRandom(10, 1, 100);
-            ArrayAnalyzer.PrintStatistics(arr1);
-
-            int[] arr2 = ArrayAnalyzer.GenerateRandom(5, 10, 50);
-            ArrayAnalyzer.PrintStatistics(arr2);
+            int[] arr = ArrayAnalyzer.RandomNumberArrayGenerator();
+            ArrayAnalyzer.PrinterInformation(arr);
+            Console.WriteLine();
 
             // Задание 3
-            string text1 = "The quick brown fox jumps over the lazy dog";
-            double avgLen1 = TextAnalyzer.GetAverageWordLength(text1);
-            Console.WriteLine($"\nТекст: {text1}");
-            Console.WriteLine($"Средняя длина слова: {avgLen1:F2}\n");
-
-            string text2 = "Это сложное предложение с длинными и короткими словами";
-            double avgLen2 = TextAnalyzer.GetAverageWordLength(text2);
-            Console.WriteLine($"\nТекст: {text2}");
-            Console.WriteLine($"Средняя длина слова: {avgLen2:F2}\n");
-
+            Console.WriteLine("Введите текст");
+            string text = Console.ReadLine();
+            double avgLen = TextAnalyzer.AverageWordLengthCounter(text);
+            Console.WriteLine($"\nТекст: {text}");
+            Console.WriteLine($"Средняя длина слова: {avgLen:F2}\n");
         }
     }
 }

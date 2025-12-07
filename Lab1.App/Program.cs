@@ -11,20 +11,32 @@ namespace Lab1.App
         /// <summary>
         /// Запускает программу
         /// </summary>
-        /// <param name="args"></param>
-        static void Main(string[] args)
+        static void Main()
         {
             Console.Write("Введите число для последовательности: ");
-            int n = int.Parse(Console.ReadLine());
-            string sequence = SequenceGenerator.SequenceCreator(n);
-            Console.WriteLine($"Результат: {sequence}");
-
-            Console.Write("Введите нечетное положительное число для квадрата: ");
-            int squareSize = int.Parse(Console.ReadLine());
-            SquareRenderer.SquareOfStarsPrinter(squareSize);
-
-            Console.WriteLine("Нажмите любую клавишу для выхода...");
-            Console.ReadKey();
+            int n;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out n))
+                {
+                    string sequence = SequenceGenerator.SequenceCreator(n);
+                    Console.WriteLine($"Результат: {sequence}");
+                    Console.Write("Введите нечетное положительное число для квадрата: ");
+                    if (int.TryParse(Console.ReadLine(), out n))
+                    {
+                        SquareRenderer.SquareOfStarsPrinter(n);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели не число, попробуйте ещё раз");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели не число, попробуйте ещё раз");
+                }
+            }
         }
     }
 }
