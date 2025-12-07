@@ -4,12 +4,12 @@ using Lab1.Libraries;
 namespace Lab1.App
 {
     /// <summary>
-    /// 
+    /// Класс для запуска программы
     /// </summary>
     class Program
     {
         /// <summary>
-        /// 
+        /// Запускает программу
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)

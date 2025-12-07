@@ -3,16 +3,16 @@
 namespace Lab1.Libraries
 {
     /// <summary>
-    /// 
+    /// Класс для работы с последовательностью
     /// </summary>
     public class SequenceGenerator
     {
         /// <summary>
-        /// 
+        /// Генератор последовательности
         /// </summary>
-        /// <param name="n"></param>
+        /// <param name="n">величина последовательности</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentException">предупреждение при ошибке аргумента</exception>
         public static string SequenceCreator(int n)
         {
 
@@ -27,7 +27,9 @@ namespace Lab1.Libraries
             {
                 sb.Append(i);
                 if (i != n)
+                {
                     sb.Append(", ");
+                }
             }
             return sb.ToString();
         }

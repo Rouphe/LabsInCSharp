@@ -1,20 +1,19 @@
 ﻿namespace Lab1.Libraries
 {
     /// <summary>
-    /// 
+    /// Класс для работы с квадратом из звёзд
     /// </summary>
     public class SquareRenderer
     {
         /// <summary>
-        /// 
+        /// Рисует квадрат из звёз
         /// </summary>
-        /// <param name="n"></param>
+        /// <param name="n">размер стороны квадрата</param>
         public static void SquareOfStarsPrinter(int n)
         {
             if (n < 1 || n % 2 == 0)
             {
-                Console.WriteLine("Введите нечетное положительное число");
-                return;
+                throw new ArgumentException("Введите нечётное положительное число", nameof(n));
             }
             int center = n / 2;
             for (int i = 0; i < n; i++)
@@ -24,6 +23,7 @@
                     var s = (i == center && j == center)
                         ? " "
                         : "*";
+                    Console.Write(s);
                 }
                 Console.WriteLine();
             }
