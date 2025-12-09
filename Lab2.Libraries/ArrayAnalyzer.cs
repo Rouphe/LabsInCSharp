@@ -5,19 +5,19 @@ namespace Lab2.Libraries
 
 {
     /// <summary>
-    /// Класс для работы с массивами
+    /// Для работы с массивами
     /// </summary>
     public static class ArrayAnalyzer
     {
         /// <summary>
-        /// Генерирует массив случайных чисел
+        /// Сгенерировать массив случайных чисел
         /// </summary>
         /// <returns>массив случайных чисел</returns>
-        public static int[] RandomNumberArrayGenerator()
+        public static int[] GeneratesRandomNumberArray()
         {
-            int size = 10; //размер массива
-            int minValue = 0; //минимальное возможное число в массиве
-            int maxValue = 100; //максимальное возможное число в массиве
+            int size = 10; 
+            int minValue = 0; 
+            int maxValue = 100; 
 
             Random random = new Random();
             int[] array = new int[size];
@@ -31,17 +31,12 @@ namespace Lab2.Libraries
         }
 
         /// <summary>
-        /// Находит минимальное число в массиве
+        /// Найти минимальное число в массиве
         /// </summary>
         /// <param name="array">массив чисел</param>
         /// <returns>минимальное число в массиве</returns>
-        public static int SeekerMinimum(int[] array)
+        private static int FindMinimum(int[] array)
         {
-            if (array.Length == 0)
-            {
-                throw new ArgumentException("Массив не должен быть пустым", nameof(array));
-            }  
-
             int min = array[0];
             for (int i = 1; i < array.Length; i++)
             {
@@ -52,17 +47,12 @@ namespace Lab2.Libraries
         }
 
         /// <summary>
-        /// Находит маскимальное число в массиве
+        /// Найти маскимальное число в массиве
         /// </summary>
         /// <param name="array">массив чисел</param>
         /// <returns>максимальное число в массиве</returns>
-        public static int SeekerMaximum(int[] array)
+        private static int FindMaximum(int[] array)
         {
-            if (array.Length == 0)
-            {
-                throw new ArgumentException("Массив не должен быть пустым", nameof(array));
-            }
-
             int max = array[0];
             for (int i = 1; i < array.Length; i++)
             {
@@ -73,11 +63,11 @@ namespace Lab2.Libraries
         }
 
         /// <summary>
-        /// Сортировщик по возрастанию (сортировка пузырьком)
+        /// Отсортировать по возрастанию (сортировка пузырьком)
         /// </summary>
         /// <param name="array">массив чисел</param>
         /// <exception cref="ArgumentException">массив имеет меньше двух элементов</exception>
-        public static void ArraySorter(int[] array)
+        public static void ArraySortAscending(int[] array)
         {
             if (array.Length < 2)
             {
@@ -99,10 +89,10 @@ namespace Lab2.Libraries
         }
 
         /// <summary>
-        /// Выводит массив в консоль
+        /// Вывести массив в консоль
         /// </summary>
         /// <param name="array">массив чисел</param>
-        public static void PrinterArray(int[] array)
+        public static void PrintArray(int[] array)
         {
             Console.Write("Массив чисел: ");
             for (int i = 0; i < array.Length; i++)
@@ -118,18 +108,18 @@ namespace Lab2.Libraries
         }
 
         /// <summary>
-        /// Выводит информацию о массиве
+        /// Вывести информацию о массиве
         /// </summary>
         /// <param name="array">массив чисел</param>
-        public static void PrinterInformation(int[] array)
+        public static void PrintInformation(int[] array)
         {
-            PrinterArray(array);
+            PrintArray(array);
             Console.WriteLine("Отсортированный массив");
-            ArraySorter(array);
-            PrinterArray(array);
+            ArraySortAscending(array);
+            PrintArray(array);
             Console.WriteLine($"Количество элементов: {array.Length}");
-            Console.WriteLine($"Минимальный элемент массива: {SeekerMinimum(array)}");
-            Console.WriteLine($"Максимальный элемент массива: {SeekerMaximum(array)}");
+            Console.WriteLine($"Минимальный элемент массива: {FindMinimum(array)}");
+            Console.WriteLine($"Максимальный элемент массива: {FindMaximum(array)}");
         }
     }
 }

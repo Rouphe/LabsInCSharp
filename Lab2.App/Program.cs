@@ -37,6 +37,24 @@ namespace Lab2.App
                         Console.WriteLine(person);
 
                         double bmi = BMICalculator.Calculate(person);
+                        var category = BMICalculator.GetCategory(bmi);
+
+                        switch (category)
+                        {
+                            case BMICalculator.BmiCategory.NotEnough:
+                                Console.WriteLine("Избыточный вес");
+                                break;
+                            case BMICalculator.BmiCategory.Normal:
+                                Console.WriteLine("Нормальный вес");
+                                break;
+                            case BMICalculator.BmiCategory.Excess:
+                                Console.WriteLine("Избыточный вес");
+                                break;
+                            case BMICalculator.BmiCategory.Fatness:
+                                Console.WriteLine("Избыточный вес");
+                                break;
+                        }
+
                         Console.WriteLine($"ИМТ (BMI): {bmi:F2}");
                         Console.WriteLine($"Категория: {BMICalculator.GetCategory(bmi)}\n");
                         break;
@@ -50,14 +68,15 @@ namespace Lab2.App
 
             // Задание 2
 
-            int[] arr = ArrayAnalyzer.RandomNumberArrayGenerator();
-            ArrayAnalyzer.PrinterInformation(arr);
+            int[] arr = ArrayAnalyzer.GeneratesRandomNumberArray();
+            ArrayAnalyzer.PrintInformation(arr);
             Console.WriteLine();
 
             // Задание 3
             Console.WriteLine("Введите текст");
             string text = Console.ReadLine();
-            double avgLen = TextAnalyzer.AverageWordLengthCounter(text);
+
+            double avgLen = TextAnalyzer.CalculateAverageLengthWord(text);
             Console.WriteLine($"\nТекст: {text}");
             Console.WriteLine($"Средняя длина слова: {avgLen:F2}\n");
         }

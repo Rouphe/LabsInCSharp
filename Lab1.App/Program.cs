@@ -4,7 +4,7 @@ using Lab1.Libraries;
 namespace Lab1.App
 {
     /// <summary>
-    /// Класс для запуска программы
+    /// Для запуска программы
     /// </summary>
     class Program
     {
@@ -19,24 +19,30 @@ namespace Lab1.App
             {
                 if (int.TryParse(Console.ReadLine(), out n))
                 {
-                    string sequence = SequenceGenerator.SequenceCreator(n);
+                    string sequence = SequenceGenerator.SequenceGenerates(n);
                     Console.WriteLine($"Результат: {sequence}");
                     Console.Write("Введите нечетное положительное число для квадрата: ");
                     if (int.TryParse(Console.ReadLine(), out n))
                     {
-                        SquareRenderer.SquareOfStarsPrinter(n);
+                        SquareRenderer.PrintSquareOfStars(n);
                         break;
                     }
                     else
                     {
-                        Console.WriteLine("Вы ввели не число, попробуйте ещё раз");
+                        Console.WriteLine(OutputError());
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Вы ввели не число, попробуйте ещё раз");
+                    Console.WriteLine(OutputError());
                 }
             }
         }
+
+        private static string OutputError()
+        {
+            return "Вы ввели не число, попробуйте ещё раз";
+        }
+
     }
 }

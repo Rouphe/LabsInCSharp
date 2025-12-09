@@ -3,7 +3,7 @@
 namespace Lab1.Libraries
 {
     /// <summary>
-    /// Класс для работы с последовательностью
+    /// Для работы с последовательностью
     /// </summary>
     public class SequenceGenerator
     {
@@ -13,12 +13,12 @@ namespace Lab1.Libraries
         /// <param name="n">величина последовательности</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">ошибка аргумента "n"</exception>
-        public static string SequenceCreator(int n)
+        public static string SequenceGenerates(int n)
         {
 
             if (n < 1)
             {
-                throw new ArgumentException("Аргумент n должен быть положительным.", nameof(n));
+                throw new ArgumentException("Аргумент должен быть положительным.", nameof(n));
             }
             
             StringBuilder sb = new StringBuilder();

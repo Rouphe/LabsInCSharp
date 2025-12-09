@@ -3,21 +3,31 @@
 
 {
     /// <summary>
-    /// Класс для анализа текста
+    /// Для анализа текста
     /// </summary>
     public static class TextAnalyzer
     {
         /// <summary>
-        /// Расчет средней длины слова в тексте
+        /// Поймать ошибку аргумета типа string.
         /// </summary>
-        /// <param name="text">текст пользователя</param>
-        /// <returns>средняя длина слова в тексте</returns>
-        public static double AverageWordLengthCounter(string text)
+        /// <param name="text"></param>
+        /// <exception cref="ArgumentException"></exception>
+        private static void CatchStringArgumentError(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
-                Console.WriteLine("В вашем тексте нет слов");
+                throw new ArgumentException("Аргумент не должен быть пустым", nameof(text));
             }
+        }
+
+        /// <summary>
+        /// Расчетать среднюю длину слова.
+        /// </summary>
+        /// <param name="text">текст пользователя</param>
+        /// <returns>средняя длина слова в тексте</returns>
+        public static double CalculateAverageLengthWord(string text)
+        {
+            CatchStringArgumentError(text);
 
             float wordCount =  1;
             float totalLength = 0;
@@ -37,6 +47,30 @@
                 totalLength++;
             }
             return totalLength / wordCount;
+        }
+
+        /// <summary>
+        /// Посчитать количество слов.
+        /// </summary>
+        /// <param name="text">Строка пользователя.</param>
+        public static int CountNumberWords(string text)
+        {
+            CatchStringArgumentError(text);
+
+            text = text.ToLower().Trim();
+            var textElements = text.Split(' ', '.');
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                for (int j = 0; j < text.Length; j++)
+                {
+                    if (text[i] == text[j])
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 }

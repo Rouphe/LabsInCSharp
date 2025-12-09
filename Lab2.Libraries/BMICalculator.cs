@@ -89,11 +89,38 @@
         /// <summary>
         /// Определение категории веса по BMI
         /// </summary>
-        public static string GetCategory(double bmi)
+        public static string GetCategoryString(double bmi)
         {
             return bmi < 18.5 ? "Недостаточный вес" :
                    bmi < 25 ? "Нормальный вес" :
                    bmi < 30 ? "Избыточный вес" : "Ожирение";
         }
+
+        public enum BmiCategory
+        {
+            NotEnough = 0,
+            Normal = 1,
+            Excess = 2,
+            Fatness = 3
+        }
+
+        public static BmiCategory GetCategory(double bmi)
+        {
+            switch (bmi)
+            {
+                case double n when n < 18.5:
+                    return BmiCategory.NotEnough;
+                case double n when n < 25:
+                    return BmiCategory.Normal;
+                case double n when n < 30:
+                    return BmiCategory.Excess;
+                case double n when n > 30:
+                    return BmiCategory.Fatness;
+                default:
+                    throw new ArgumentException("Аргумент должен быть числом");
+            }
+            
+        }
+
     }
 }
