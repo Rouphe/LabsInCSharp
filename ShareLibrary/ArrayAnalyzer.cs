@@ -1,8 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Lab2.Libraries
-
-
+﻿namespace ShareLibrary
 {
     /// <summary>
     /// Для работы с массивами
@@ -15,9 +11,9 @@ namespace Lab2.Libraries
         /// <returns>массив случайных чисел</returns>
         public static int[] GeneratesRandomNumberArray()
         {
-            int size = 10; 
-            int minValue = 0; 
-            int maxValue = 100; 
+            int size = 10;
+            int minValue = 0;
+            int maxValue = 100;
 
             Random random = new Random();
             int[] array = new int[size];

@@ -1,6 +1,4 @@
-﻿namespace Lab2.Libraries
-
-
+﻿namespace ShareLibrary
 {
     /// <summary>
     /// Для анализа текста
@@ -29,7 +27,7 @@
         {
             CatchStringArgumentError(text);
 
-            float wordCount =  1;
+            float wordCount = 1;
             float totalLength = 0;
 
             for (int i = 0; i < text.Length; i++)
@@ -39,7 +37,7 @@
                     continue;
                 }
 
-                if (i != text.Length - 1 && (char.IsWhiteSpace(text[i+1]) || char.IsPunctuation(text[i+1])))
+                if (i != text.Length - 1 && (char.IsWhiteSpace(text[i + 1]) || char.IsPunctuation(text[i + 1])))
                 {
                     wordCount++;
                 }

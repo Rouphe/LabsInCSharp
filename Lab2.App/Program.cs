@@ -1,5 +1,6 @@
 ﻿using System;
 using Lab2.Libraries;
+using ShareLibrary;
 
 namespace Lab2.App
 {
