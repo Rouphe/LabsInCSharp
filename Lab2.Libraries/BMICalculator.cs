@@ -96,11 +96,29 @@
                    bmi < 30 ? "Избыточный вес" : "Ожирение";
         }
 
+        /// <summary>
+        /// Классификация BMI
+        /// </summary>
         public enum BmiCategory
         {
+            /// <summary>
+            /// Недостаточный вес
+            /// </summary>
             NotEnough = 0,
+            
+            /// <summary>
+            /// Нормальный вес
+            /// </summary>
             Normal = 1,
+
+            /// <summary>
+            /// Избыточный вес
+            /// </summary>
             Excess = 2,
+
+            /// <summary>
+            /// Ожирение
+            /// </summary>
             Fatness = 3
         }
 
